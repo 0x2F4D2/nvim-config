@@ -58,4 +58,11 @@ end, { desc = "Format code" })
 map('n', '<Leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
 
 -- ToggleTerm
-map('n','<C-t>', ':ToggleTerm<CR>')
+vim.api.nvim_exec([[
+  autocmd TermEnter term://*toggleterm#*
+      \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
+]], false)
+
+-- 普通模式和插入模式的映射
+map('n', '<C-t>', '<Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })
+map('i', '<C-t>', '<Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })
