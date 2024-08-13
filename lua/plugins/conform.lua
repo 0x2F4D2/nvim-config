@@ -11,7 +11,9 @@ return {
 				javascript = { "prettier" },
 				typescript = { "prettier" },
 				["*"] = { "codespell" },
-        wxml = { "prettier" }
+        wxml = { "prettier" },
+        vue = {"prettier"},
+        css = {"prettier"}
 			},
 
 			default_format_opts = {

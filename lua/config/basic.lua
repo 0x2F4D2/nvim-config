@@ -39,7 +39,7 @@ vim.opt.termguicolors = true
 vim.filetype.add({
   extension = {
     wxml = "html",
-    wxss = "css"
+    wxss = "css",
   }
 })
 
