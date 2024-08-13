@@ -22,6 +22,7 @@ return {
 				"c",
 				"cpp",
 				"dockerfile",
+        "vue"
 			},
 			sync_install = false,
 			highlight = { enable = true },
