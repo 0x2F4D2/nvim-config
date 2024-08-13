@@ -76,12 +76,12 @@ return {
 				["<C-Space>"] = cmp.mapping.complete({}), -- show completion suggestions
 				["<CR>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
-						if luasnip.expandable() then
-							luasnip.expand()
+						local entry = cmp.get_selected_entry()
+						-- 检查是否有选中的条目
+						if entry then
+							cmp.confirm({ select = false }) -- 直接确认选中的
 						else
-							cmp.confirm({
-								select = true,
-							})
+							fallback() -- 调用 fallback
 						end
 					else
 						fallback()
@@ -163,4 +163,3 @@ return {
 		})
 	end,
 }
-
