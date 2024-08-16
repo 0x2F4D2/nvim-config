@@ -9,8 +9,8 @@ return {
 		{ "WhoIsSethDaniel/mason-tool-installer" },
 	},
 
-	-- 语言参考： https://mason-registry.dev/registry/list
-	-- 安装语言服务器
+	-- Language： https://mason-registry.dev/registry/list
+	-- Install Custom Language
 	config = function()
 		require("mason").setup()
 		require("mason-lspconfig").setup({
@@ -22,8 +22,8 @@ return {
 				"tsserver",
 			},
 		})
-		-- 安装debug和formatter相关
-		require("mason-tool-installer").setup({
+		-- Install Debug and Formatting
+    require("mason-tool-installer").setup({
 			ensure_installed = {
 				"js-debug-adapter",
 				"java-debug-adapter",
@@ -70,7 +70,7 @@ return {
 		local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
 			.. "/node_modules/@vue/language-server"
 
-    -- TypeScript LSP Setting
+		-- TypeScript LSP Setting
 		lspconfig.tsserver.setup({
 			init_options = {
 				plugins = {
@@ -86,6 +86,5 @@ return {
 
 		-- No need to set `hybridMode` to `true` as it's the default value
 		lspconfig.volar.setup({})
-
 	end,
 }
