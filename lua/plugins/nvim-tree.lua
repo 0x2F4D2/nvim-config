@@ -14,9 +14,9 @@ return {
       timeout = 500,
     },
     renderer = {
-      highlight_opened_files = "all", -- 高亮打开的文件
+      highlight_opened_files = "all",
       indent_markers = {
-        enable = true, -- 启用缩进标记
+        enable = true,
       },
     },
     actions = {
