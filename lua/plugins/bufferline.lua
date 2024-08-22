@@ -8,14 +8,11 @@ return {
 			numbers = "ordinal",
 			close_command = "Bdelete",
 			right_mouse_command = "Bdelete",
-			left_mouse_command = "Bdelete",
 			diagnostics = "nvim_lsp",
 			offsets = {
 				{
 					filetype = "NvimTree",
-					text = function()
-						return vim.fn.getcwd()
-					end,
+					text = "File Explorer",
 					text_align = "center",
 					highlight = true,
 					separator = true,
