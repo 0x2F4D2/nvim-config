@@ -1,46 +1,47 @@
 vim.g.mapleader = " "
 
+
 local map = vim.keymap.set
 
--- 部分操作需要搭配Alacritty的快捷键操作,比如Command + S保存
--- <D-s>
--- <D-w>
+function opts(desc)
+  if desc == nil then
+    desc = ""
+  end
 
--- Past
-map("v", "<D-c>", "y+")
-map("v", "<C-c>", "y+")
+  return { noremap = true, desc = desc}
+end
 
 -- window
-map("n", "s", "") -- 取消s默认功能
-map("n", "sv", ":vsp<CR>") -- 执行vsp命令，垂直分屏
-map("n", "sh", ":sp<CR>") -- 执行sp命令，水平分屏
-map("n", "sc", "<C-w>c") -- 关闭当前窗口
-map("n", "so", "<C-w>o") -- 关闭其它窗口
+map("n", "s", "", opts(nil)) -- 取消s默认功能
+map("n", "sv", ":vsp<CR>", opts(nil)) -- 执行vsp命令，垂直分屏
+map("n", "sh", ":sp<CR>", opts(nil)) -- 执行sp命令，水平分屏
+map("n", "sc", "<C-w>c", opts(nil)) -- 关闭当前窗口
+map("n", "so", "<C-w>o", opts(nil)) -- 关闭其它窗口
 
 -- Window Jump
 -- alt + hjklDDown窗口之间跳转
-map("n", "<A-h>", "<C-w>h")
-map("n", "<A-j>", "<C-w>j")
-map("n", "<A-k>", "<C-w>k")
-map("n", "<A-l>", "<C-w>l")
+map("n", "<A-h>", "<C-w>h", opts(nil))
+map("n", "<A-j>", "<C-w>j", opts(nil))
+map("n", "<A-k>", "<C-w>k", opts(nil))
+map("n", "<A-l>", "<C-w>l", opts(nil))
 
 -- 左右比例控制
-map("n", "<C-Left>", ":vertical resize -2<CR>")
-map("n", "<C-Right>", ":vertical resize +2<CR>")
-map("n", "s,", ":vertical resize -10<CR>")
-map("n", "s.", ":vertical resize +10<CR>")
+map("n", "<C-Left>", ":vertical resize -2<CR>", opts(nil))
+map("n", "<C-Right>", ":vertical resize +2<CR>", opts(nil))
+map("n", "s,", ":vertical resize -10<CR>", opts(nil))
+map("n", "s.", ":vertical resize +10<CR>", opts(nil))
 -- 上下比例
-map("n", "sj", ":resize +10<CR>")
-map("n", "sk", ":resize -10<CR>")
+map("n", "sj", ":resize +10<CR>", opts(nil))
+map("n", "sk", ":resize -10<CR>", opts(nil))
 -- 相等比例
-map("n", "s=", "<C-w>=")
+map("n", "s=", "<C-w>=", opts(nil))
 
 -- nvim-tree
-map("n", "<A-S-f>", ":NvimTreeFindFile<CR>") -- find file in file explorer
+map("n", "<A-S-f>", ":NvimTreeFindFile<CR>", opts(nil)) -- find file in file explorer
 
 -- buffline
-map("n", "[", ":BufferLineCyclePrev<CR>") -- 切换到上一个标签
-map("n", "]", ":BufferLineCycleNext<CR>") -- 切换到下一个标签
+map("n", "[", ":BufferLineCyclePrev<CR>", opts(nil)) -- toggle to previous tab
+map("n", "]", ":BufferLineCycleNext<CR>", opts(nil)) -- toggle to next tabs
 
 -- conform
 map("", "<leader>f", function()
@@ -55,10 +56,10 @@ map("", "<leader>f", function()
 end, { desc = "Format code" })
 
 -- lsp
-map("n", "<Leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>") -- go to definition
-map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>") -- go to implementation
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>") -- go to references
+map("n", "<Leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts("code action"))
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts("go to definition"))
+map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts("go to implementation"))
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts("go to references"))
 
 -- ToggleTerm
 vim.api.nvim_exec(
@@ -69,6 +70,5 @@ vim.api.nvim_exec(
 	false
 )
 
--- 普通模式和插入模式的映射
 map("n", "<C-t>", '<Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })
 map("i", "<C-t>", '<Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })
