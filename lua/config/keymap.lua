@@ -42,7 +42,7 @@ map("n", "<A-S-f>", ":NvimTreeFindFile<CR>") -- find file in file explorer
 map("n", "[", ":BufferLineCyclePrev<CR>") -- 切换到上一个标签
 map("n", "]", ":BufferLineCycleNext<CR>") -- 切换到下一个标签
 
--- conform 
+-- conform
 map("", "<leader>f", function()
 	require("conform").format({ async = true }, function(err)
 		if not err then
@@ -55,14 +55,20 @@ map("", "<leader>f", function()
 end, { desc = "Format code" })
 
 -- lsp
-map('n', '<Leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+map("n", "<Leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>") -- go to definition
+map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>") -- go to implementation
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>") -- go to references
 
 -- ToggleTerm
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+	[[
   autocmd TermEnter term://*toggleterm#*
       \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
-]], false)
+]],
+	false
+)
 
 -- 普通模式和插入模式的映射
-map('n', '<C-t>', '<Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })
-map('i', '<C-t>', '<Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })
+map("n", "<C-t>", '<Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })
+map("i", "<C-t>", '<Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })
