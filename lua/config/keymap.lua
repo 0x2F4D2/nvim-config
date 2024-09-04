@@ -1,14 +1,13 @@
 vim.g.mapleader = " "
 
-
 local map = vim.keymap.set
 
 function opts(desc)
-  if desc == nil then
-    desc = ""
-  end
+	if desc == nil then
+		desc = ""
+	end
 
-  return { noremap = true, desc = desc}
+	return { noremap = true, desc = desc }
 end
 
 -- window
