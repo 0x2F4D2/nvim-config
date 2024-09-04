@@ -23,7 +23,7 @@ return {
 			},
 		})
 		-- Install Debug and Formatting
-    require("mason-tool-installer").setup({
+		require("mason-tool-installer").setup({
 			ensure_installed = {
 				"js-debug-adapter",
 				"java-debug-adapter",
@@ -42,6 +42,11 @@ return {
 		local lspconfig = require("lspconfig")
 		local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 		local lsp_attach = function() end
+
+		-- setting lsp hover border
+		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+		vim.lsp.handlers["textDocument/signatureHelp"] =
+			vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
 		-- Call setup on each LSP server
 		require("mason-lspconfig").setup_handlers({
